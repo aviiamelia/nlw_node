@@ -42,7 +42,7 @@ export const voteOnPoll = async (app: FastifyInstance) => {
           -1,
           userPreviousVoteOnPoll.pollOptionId
         );
-        console.log("entrou");
+
         voting.publish(pollid, {
           pollOptionId: userPreviousVoteOnPoll.pollOptionId,
           votes: Number(votes),
@@ -70,7 +70,6 @@ export const voteOnPoll = async (app: FastifyInstance) => {
         pollOptionId,
       },
     });
-    console.log("saiu");
     const votes = await redis.zincrby(pollid, 1, pollOptionId);
     voting.publish(pollid, {
       pollOptionId,
