@@ -13,7 +13,6 @@ export const createPoll = async (app: FastifyInstance) => {
     const param = z.object({
       pollid: z.string().uuid(),
     });
-    const { pollid } = param.parse(request.params);
     const poll = await prisma.poll.create({
       data: {
         title: title,
